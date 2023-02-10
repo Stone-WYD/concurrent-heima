@@ -42,11 +42,11 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.48</version>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>org.openjdk.jol</groupId>
             <artifactId>jol-core</artifactId>
             <version>0.10-TEST</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
 </project>
