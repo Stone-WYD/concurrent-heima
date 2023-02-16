@@ -26,7 +26,7 @@ public class TestBiased {
         log.debug("begin");
         for (int i = 0; i < 6; i++) {
             Dog d = new Dog();
-            log.debug(ClassLayout.parseInstance(d).toPrintableSimple(true));
+            log.debug(ClassLayout.parseInstance(d).toPrintable(true));
             Thread.sleep(1000);
         }
     }
@@ -42,7 +42,7 @@ public class TestBiased {
                 Dog d = new Dog();
                 list.add(d);
                 synchronized (d) {
-                    log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintableSimple(true));
+                    log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintable(true));
                 }
             }
             LockSupport.unpark(t2);
@@ -54,11 +54,11 @@ public class TestBiased {
             log.debug("===============> ");
             for (int i = 0; i < loopNumber; i++) {
                 Dog d = list.get(i);
-                log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintableSimple(true));
+                log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintable(true));
                 synchronized (d) {
-                    log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintableSimple(true));
+                    log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintable(true));
                 }
-                log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintableSimple(true));
+                log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintable(true));
             }
             LockSupport.unpark(t3);
         }, "t2");
@@ -69,17 +69,17 @@ public class TestBiased {
             log.debug("===============> ");
             for (int i = 0; i < loopNumber; i++) {
                 Dog d = list.get(i);
-                log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintableSimple(true));
+                log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintable(true));
                 synchronized (d) {
-                    log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintableSimple(true));
+                    log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintable(true));
                 }
-                log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintableSimple(true));
+                log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintable(true));
             }
         }, "t3");
         t3.start();
 
         t3.join();
-        log.debug(ClassLayout.parseInstance(new Dog()).toPrintableSimple(true));
+        log.debug(ClassLayout.parseInstance(new Dog()).toPrintable(true));
     }
 
     private static void test3() throws InterruptedException {
@@ -90,7 +90,7 @@ public class TestBiased {
                 Dog d = new Dog();
                 list.add(d);
                 synchronized (d) {
-                    log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintableSimple(true));
+                    log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintable(true));
                 }
             }
             synchronized (list) {
@@ -111,11 +111,11 @@ public class TestBiased {
             log.debug("===============> ");
             for (int i = 0; i < 30; i++) {
                 Dog d = list.get(i);
-                log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintableSimple(true));
+                log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintable(true));
                 synchronized (d) {
-                    log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintableSimple(true));
+                    log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintable(true));
                 }
-                log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintableSimple(true));
+                log.debug(i + "\t" + ClassLayout.parseInstance(d).toPrintable(true));
             }
         }, "t2");
         t2.start();
@@ -127,7 +127,7 @@ public class TestBiased {
         Dog d = new Dog();
         Thread t1 = new Thread(() -> {
             synchronized (d) {
-                log.debug(ClassLayout.parseInstance(d).toPrintableSimple(true));
+                log.debug(ClassLayout.parseInstance(d).toPrintable(true));
             }
             synchronized (TestBiased.class) {
                 TestBiased.class.notify();
@@ -144,11 +144,11 @@ public class TestBiased {
                     e.printStackTrace();
                 }
             }
-            log.debug(ClassLayout.parseInstance(d).toPrintableSimple(true));
+            log.debug(ClassLayout.parseInstance(d).toPrintable(true));
             synchronized (d) {
-                log.debug(ClassLayout.parseInstance(d).toPrintableSimple(true));
+                log.debug(ClassLayout.parseInstance(d).toPrintable(true));
             }
-            log.debug(ClassLayout.parseInstance(d).toPrintableSimple(true));
+            log.debug(ClassLayout.parseInstance(d).toPrintable(true));
         }, "t2");
         t2.start();
     }
@@ -158,14 +158,14 @@ public class TestBiased {
     // 测试偏向锁
     private static void test1() {
         Dog d = new Dog();
-        log.debug(ClassLayout.parseInstance(d).toPrintableSimple(true));
+        log.debug(ClassLayout.parseInstance(d).toPrintable(true));
 
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        log.debug(ClassLayout.parseInstance(new Dog()).toPrintableSimple(true));
+        log.debug(ClassLayout.parseInstance(new Dog()).toPrintable(true));
     }
 }
 
