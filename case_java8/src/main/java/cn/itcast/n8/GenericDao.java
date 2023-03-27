@@ -9,9 +9,9 @@ import java.sql.*;
 import java.util.*;
 
 public class GenericDao {
-    static String URL = "jdbc:mysql://localhost:3306/test";
+    static String URL = "jdbc:mysql://localhost:8888/test";
     static String USERNAME = "root";
-    static String PASSWORD = "root";
+    static String PASSWORD = "123456";
 
     public <T> List<T> queryList(Class<T> beanClass, String sql, Object... args) {
         System.out.println("sql: [" + sql + "] params:" + Arrays.toString(args));

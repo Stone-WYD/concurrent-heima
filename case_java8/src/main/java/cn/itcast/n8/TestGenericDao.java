@@ -36,7 +36,7 @@ class GenericDaoCached extends GenericDao {
     @Override
     public <T> T queryOne(Class<T> beanClass, String sql, Object... args) {
         // 先从缓存中找，找到直接返回
-        SqlPair key = new SqlPair(sql, args);;
+        SqlPair key = new SqlPair(sql, args);
         rw.readLock().lock();
         try {
             T value = (T) map.get(key);
